@@ -44,4 +44,11 @@ subPathAry.map(file => {
     router.use(preRoutePath, refIdx.routes(), refIdx.allowedMethods());
 });
 
+// @steps{3}:将index.html视图文件作为根路由/的渲染页面
+console.log("页面路由：");
+router.get("/", async ctx => {
+    await ctx.render("index");
+});
+console.log("GET\t\t/");
+
 module.exports = router;

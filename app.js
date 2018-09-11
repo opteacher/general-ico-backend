@@ -2,12 +2,15 @@
  * 作者：opteacher
  * 日期：2018/07/06
  ***/
+const path = require("path");
 const Koa = require("koa");
 // 用于旧版本模块的generator向async/await转换
 const convert = require("koa-convert");
 const bodyparser = require("koa-bodyparser");
 const json = require("koa-json");
 const logger = require("koa-logger");
+const statc = require("koa-static");
+const views = require("koa-views");
 const cors = require("koa2-cors");
 
 const config = require("./config/server");
@@ -27,6 +30,12 @@ app.use(json());
 
 // 日志输出
 app.use(logger());
+
+// 指定静态目录
+app.use(statc(path.join(__dirname, "public")));
+
+// 指定页面目录
+app.use(views("./views", {extension: "html"}));
 
 // 模型路由
 app.use(models.routes(), models.allowedMethods());
