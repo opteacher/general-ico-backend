@@ -1,0 +1,26 @@
+{
+  "config": {
+    "host": "smtp.live.com",
+    "port": 587,
+    "secure": false,
+    "auth": {
+      "user": "opteacher@hotmail.com",
+      "pass": "13371982021op"
+    }
+  },
+  "html": {
+    "template": "<p>{{verify_code}}</p>",
+    "verifyCodeSlot": "{{verify_code}}"
+  },
+  "verifyCode": {
+    "length": {
+      "min": 5,
+      "max": 8
+    },
+    "contains": {
+      "lowerCase": true,
+      "upperCase": true
+    },
+    "expSeconds": 7200
+  }
+}

@@ -147,6 +147,9 @@ Mongo.prototype.defineModel = function(struct, options) {
             }
         });
     });
+    if(options.index) {
+        schema.index(options.index.indexes, options.index.options)
+    }
 
     let model = mongoose.model(mdlName, schema);
     model.__extProperties = _.assign({

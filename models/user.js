@@ -4,6 +4,7 @@ const db = require("../databases/mongo");
 module.exports = db.defineModel({
     __modelName:    "user",
     username:   db.Types.String,
+    email:      db.Types.String,
     password:   db.Types.String,
     icoAddr:    db.Types.String,
     btcAddr:    db.Types.String,
@@ -13,7 +14,9 @@ module.exports = db.defineModel({
     middle: {
         create: {
             before: function(doc) {
-                doc.password = crypto.createHash("sha1").update(doc.password).digest("hex");
+                if(doc.password) {
+                    doc.password = crypto.createHash("sha1").update(doc.password).digest("hex");
+                }
             }
         }
     }
